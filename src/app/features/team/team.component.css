@@ -1,0 +1,32 @@
+.team-table-wrapper {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    padding: 0; 
+    overflow: hidden; 
+  }
+  
+  .team-table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+  }
+  
+  .team-table th {
+    background: #295c47;
+    color: #fff;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .team-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: #295c47;
+    background: #f9f9f9;
+  }

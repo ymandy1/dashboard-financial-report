@@ -1,0 +1,48 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+      <img src="assets/logo/logo-tech4all.png" alt="Tech4All Logo" class="sidebar-logo" />
+      <nav>
+        <ul>
+          <li>
+            <i class="fa fa-columns"></i>
+            <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          </li>
+          <li>
+            <i class="fa fa-handshake"></i>
+            <a routerLink="/parceiros" routerLinkActive="active">Parceiros</a>
+          </li>
+          <li>
+            <i class="fa fa-file-alt"></i>
+            <a routerLink="/relatorio" routerLinkActive="active">Gerar relatório</a>
+          </li>
+          <li>
+            <i class="fa fa-users"></i>
+            <a routerLink="/time" routerLinkActive="active">Time</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-bottom">
+        <ul>
+          <li>
+            <i class="fa fa-cog"></i> Configurações
+          </li>
+          <li>
+            <i class="fa fa-sign-out-alt"></i> Sair
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <div class="user-info">
+          <span class="user-name">Anna Katrina</span>
+          <img src="assets/profile.jpg" alt="Foto do usuário" class="user-avatar" />
+        </div>
+      </header>
+      <section class="dashboard-content">
+        <div class="page-fade">
+          <router-outlet></router-outlet>
+        </div>
+      </section>
+    </main>
+  </div>
