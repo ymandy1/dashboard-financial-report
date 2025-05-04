@@ -5,12 +5,7 @@
         <span>Ordenar por <b>Esse mês</b></span>
       </div>
       <div class="dashboard-chart">
-        <img src="#" alt="Gráfico de doações" style="width:100%;max-width:500px;" />
-        <div class="dashboard-chart-legend">
-          <span><span class="dot dot-green"></span> Doações via web-site</span>
-          <span><span class="dot dot-dark"></span> Doações de parceiros</span>
-          <span><span class="dot dot-yellow"></span> Outros</span>
-        </div>
+        <canvas id="myChart"> {{ chart }}</canvas>
       </div>
     </div>
     <div class="dashboard-right">
