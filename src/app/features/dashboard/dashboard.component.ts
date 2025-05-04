@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { DoacoesService } from './services/doacoes.service';
+import { DoacaoDTO } from '../dashboard/model/doacao';
 
-// Register all components in Chart.js
 Chart.register(...registerables);
 
 @Component({
@@ -15,43 +15,47 @@ export class DashboardComponent implements OnInit {
 
   constructor(private doacoesService: DoacoesService) { }
 
-  public config: any = {
-    type: 'bar',
-    data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'Sales',
-          data: ['414', '32', '12', '45', '23', '56', '78'],
-          backgroundColor: 'blue'
-        },
-        {
-          label: 'PAT',
-          data: ['12', '23', '45', '67', '89', '90', '100'],
-          backgroundColor: 'red'
-        },
-
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
-      isResponsive: true,
-      responsive: true,
-    },
-  };
+  public config: any;
 
   chart: any;
 
   ngOnInit(): void {
     this.setupDashboard();
-    this.chart = new Chart('myChart', this.config);
   }
 
   private setupDashboard() {
-    this.doacoesService.getDoacoes()
+    this.doacoesService.getDoacoes().subscribe({
+      next: (data) => {
+        this.config = this.configBuilder(data)
+        this.chart = new Chart('myChart', this.config);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar dados do dashboard', err);
+      }
+    });
+  }
+
+  private configBuilder(data: any): any {
+    return {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [
+          {
+            label: 'Valor das doações',
+            data: data.values,
+            backgroundColor: 'blue'
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        responsive: true,
+      },
+    };
   }
 }
