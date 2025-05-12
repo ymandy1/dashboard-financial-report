@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
           {
             label: 'Valor das doações',
             data: data.values,
-            backgroundColor: 'blue'
+            backgroundColor: 'green'
           }
         ]
       },

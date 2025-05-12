@@ -92,3 +92,40 @@
       width: 100%;
     }
   }
+
+  /* Estilização dos inputs de data */
+  .report-form-row input[type="date"] {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 24px;
+    border: none;
+    font-size: 1rem;
+    color: #295c47;
+    background: #fff;
+    outline: none;
+  }
+
+  /* Grupo dos campos de data lado a lado */
+  .date-range-group {
+    display: flex;
+    gap: 16px;
+    flex: 2;
+  }
+
+  .date-range-group label {
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .date-range-group div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  /* Responsividade */
+  @media (max-width: 900px) {
+    .date-range-group {
+      flex-direction: column;
+    }
+  }
