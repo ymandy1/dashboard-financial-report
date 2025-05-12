@@ -1,128 +1,132 @@
 .dashboard-container {
-    display: flex;
-    height: 100vh;
-    background: #f7f9fa;
-  }
-  
-  .sidebar {
-    width: 220px;
-    background: #fff;
-    padding: 32px 0 16px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
-  }
-  
-  .sidebar-logo {
-    width: 120px;
-    margin: 0 auto 32px auto;
-    display: block;
-  }
-  
-  .sidebar nav ul, .sidebar-bottom ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar nav ul li,
-  .sidebar-bottom ul li {
-    padding: 12px 32px;
-    font-size: 1rem;
-    color: #295c47;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 8px 0 0 8px;
-    margin-bottom: 8px;
-    transition: background 0.2s;
-  }
-  
-  .sidebar nav ul li .active,
-  .sidebar nav ul li a.active {
-    background: #295c47;
-    color: #fff !important;
-    border-radius: 8px 0 0 8px;
-    padding: 12px 32px;
-    display: block;
-  }
-  .sidebar nav ul li i,
-  .sidebar-bottom ul li i {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f9fa;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 220px;
+  background: #fff;
+  padding: 32px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-logo {
+  width: 120px;
+  margin: 0 auto 32px auto;
+  display: block;
+}
+
+.sidebar nav ul,
+.sidebar-bottom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li,
+.sidebar-bottom ul li {
+  padding: 12px 32px;
+  font-size: 1rem;
+  color: #295c47;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px 0 0 8px;
+  margin-bottom: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar nav ul li i,
+.sidebar-bottom ul li i {
   margin-right: 12px;
-  font-size: 1.25rem; 
+  font-size: 1.25rem;
   width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-  
-  .sidebar nav ul li i,
-  .sidebar-bottom ul li i {
-    margin-right: 12px;
-  }
 
-  .sidebar nav ul li,
-  .sidebar nav ul li a {
+.sidebar nav ul li a,
+.sidebar-bottom ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar nav ul li .active,
+.sidebar nav ul li a.active,
+.sidebar-bottom ul li.active,
+.sidebar-bottom ul li a.active {
+  color: #289e65;
   transition: background 0.15s, color 0.15s;
 }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+.page-fade {
+  animation: fadeIn 0.4s;
+}
 
-  .page-fade {
-    animation: fadeIn 0.4s;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  to {
+    opacity: 1;
   }
-  
-  .dashboard-main {
-    flex: 1;
-    padding: 40px 48px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-  }
-  
-  .dashboard-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #295c47;
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-name {
-    margin-right: 16px;
-    font-weight: 500;
-  }
-  
-  
-  .user-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #295c47;
-  }
-  
-  .dashboard-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 20px 48px 40px 48px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #295c47;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  margin-right: 16px;
+  font-weight: 500;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #295c47;
+}
+
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
