@@ -6,6 +6,7 @@ import { ReportGenerateComponent } from './features/report-generate/report-gener
 import { TeamComponent } from './features/team/team.component';
 import { MainLayoutComponent } from './features/layout/main-layout/main-layout.component';
 import { GeradorRelatorioComponent } from './gerador-relatorio/gerador-relatorio.component';
+import { ConfigComponent } from './features/config/config.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,8 +19,10 @@ export const routes: Routes = [
       { path: 'relatorio', component: ReportGenerateComponent },
       { path: 'time', component: TeamComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'gerar-relatorio', component: GeradorRelatorioComponent }
-
+      { path: 'gerar-relatorio', component: GeradorRelatorioComponent },
+      { path: 'configuracoes', component: ConfigComponent },
+      { path: 'sair', redirectTo: '', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
 ];
