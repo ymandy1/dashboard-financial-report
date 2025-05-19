@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
         datasets: [
           {
             label: 'Valor das doações',
-            data: data.values,
+            data: values,
             backgroundColor: 'green'
 
           }
