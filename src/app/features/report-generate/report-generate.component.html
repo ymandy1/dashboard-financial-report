@@ -1,19 +1,22 @@
 <form (ngSubmit)="gerarRelatorio()">
   <!-- Tipo de relatório -->
+  <label for="tipo-relatorio">Tipo de Relatório:</label>
   <select id="tipo-relatorio" name="tipoRelatorio" [(ngModel)]="tipoRelatorio" required>
-    <option disabled selected>Selecione um relatório</option>
+    <option value="" disabled selected>Selecione um tipo de relatório</option>
     <option value="por-parceiro">Total de doações por parceiro</option>
     <option value="comparativo-parceiro">Comparativo: Doações com e sem parceiro</option>
     <option value="por-mes">Total arrecadado por mês</option>
   </select>
 
-  <!-- Período -->
-  <input type="date" id="data-inicio" name="dataInicio" [(ngModel)]="dataInicio" required />
-  <input type="date" id="data-fim" name="dataFim" [(ngModel)]="dataFim" required />
+  <label for="data-inicio">Data início</label>
+  <input type="date" id="data-inicio" name="dataInicio" [(ngModel)]="dataInicio" required placeholder="Selecione a data de início" />
 
-  <!-- Parceiro -->
+  <label for="data-fim">Data fim</label>
+  <input type="date" id="data-fim" name="dataFim" [(ngModel)]="dataFim" required placeholder="Selecione a data de fim" />
+
+  <label for="tipo-parceiro">Tipo de Parceiro:</label>
   <select id="parceiro" name="parceiro" [(ngModel)]="parceiro" required>
-    <option disabled selected>Selecione todos os parceiros</option>
+    <option value="" disabled selected>Selecione um tipo de parceiro</option>
     <option value="todos">Todos</option>
     <option value="Parceiro Tech">Parceiro Tech</option>
     <option value="Parceiro Educa">Parceiro Educa</option>
