@@ -1,131 +1,59 @@
-.report-container h2 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #295c47;
-  }
-  
-  .report-box {
-    background: #21706d;
-    border-radius: 18px;
-    padding: 40px 48px 32px 48px;
-    max-width: 900px;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    max-width: 400px;
     margin: 0 auto;
-    color: #fff;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  }
-  
-  .report-box h3 {
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 8px;
-  }
-  
-  .report-underline {
-    border: none;
-    border-bottom: 4px solid #2ec4b6;
-    width: 220px;
-    margin-bottom: 20px;
-    margin-left: 0;
-    margin-top: 0;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  
-  .report-form-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  
-  .report-form-row label {
-    font-size: 1.1rem;
-    font-weight: 400;
-    flex: 1.5;
-  }
-  
-  .report-form-row select {
-    flex: 2;
-    padding: 10px 16px;
-    border-radius: 24px;
-    border: none;
-    font-size: 1rem;
-    color: #295c47;
+    padding: 20px;
     background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+select, input[type="date"], button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select:focus, input[type="date"]:focus, button:focus {
     outline: none;
-    margin-left: 16px;
-  }
-  
-  .report-btn {
-    margin: 40px auto 0 auto;
-    display: block;
-    width: 60%;
-    background: #295c47;
+    border-color: #295c47;
+    box-shadow: 0 0 4px rgba(41, 92, 71, 0.5);
+}
+
+button {
+    background-color: #295c47;
     color: #fff;
-    border: none;
-    border-radius: 24px;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
-  }
-  
-  .report-btn:hover {
-    background: #1e4d3a;
-  }
-  
-  @media (max-width: 900px) {
-    .report-box {
-      padding: 24px 8px;
-    }
-    .report-form-row {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
-    }
-    .report-btn {
-      width: 100%;
-    }
-  }
-
-  /* Estilização dos inputs de data */
-  .report-form-row input[type="date"] {
-    flex: 1;
-    padding: 10px 16px;
-    border-radius: 24px;
+    transition: background-color 0.3s ease;
     border: none;
+}
+
+button:hover {
+    background-color: #1e4d39;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+option {
     font-size: 1rem;
-    color: #295c47;
-    background: #fff;
-    outline: none;
-  }
+}
 
-  /* Grupo dos campos de data lado a lado */
-  .date-range-group {
-    display: flex;
-    gap: 16px;
-    flex: 2;
-  }
-
-  .date-range-group label {
-    margin-bottom: 6px;
-    color: #fff;
-  }
-
-  .date-range-group div {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  /* Responsividade */
-  @media (max-width: 900px) {
-    .date-range-group {
-      flex-direction: column;
+/* Responsividade */
+@media (max-width: 480px) {
+    form {
+        padding: 10px;
     }
-  }
+
+    select, input[type="date"], button {
+        font-size: 0.9rem;
+    }
+}
