@@ -23,10 +23,11 @@ export class DashboardComponent implements OnInit {
     this.setupDashboard();
   }
 
+
   private setupDashboard() {
     this.doacoesService.getDoacoes().subscribe({
       next: (data) => {
-        this.config = this.configBuilder(data)
+        this.config = this.configBuilder(data);
         this.chart = new Chart('myChart', this.config);
       },
       error: (err) => {
@@ -35,15 +36,18 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private configBuilder(data: any): any {
+  private configBuilder(data: any[]): any {
+    const labels = data.map(item => `Mês ${item.mes}`);
+    const values = data.map(item => item.total);
+
     return {
       type: 'bar',
       data: {
-        labels: data.labels,
+        labels: labels,
         datasets: [
           {
             label: 'Valor das doações',
-            data: data.values,
+            data: values,
             backgroundColor: 'blue'
           }
         ]
@@ -58,4 +62,6 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
+
 }

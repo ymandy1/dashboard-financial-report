@@ -10,8 +10,8 @@ export class DoacoesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getDoacoes(): Observable<DoacaoDTO> {
-    return this.httpClient.get<DoacaoDTO>('http://localhost:8080/api/doacoes');
+  public getDoacoes(): Observable<any> {
+    return this.httpClient.get<DoacaoDTO>('http://localhost:8080/api/doacoes/relatorio/arrecadacao-mensal?ano=2024');
   }
 
 }
