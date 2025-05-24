@@ -1,34 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { DoacoesService } from './services/doacoes.service';
 import { DoacaoDTO } from '../dashboard/model/doacao';
+import { CommonModule } from '@angular/common'; 
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true, 
+  imports: [CommonModule], 
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+
+  public config: any;
+  chart: any;
+
+  totalArrecadado: number = 0;
+  percentArrecadado: number = 0;
+  metaDoMes: number = 500; 
 
   constructor(private doacoesService: DoacoesService) { }
 
-  public config: any;
-
-  chart: any;
-
   ngOnInit(): void {
-    this.setupDashboard();
   }
 
+  ngAfterViewInit(): void {
+    this.setupDashboard();
+  }
 
   private setupDashboard() {
     this.doacoesService.getDoacoes().subscribe({
       next: (data) => {
         this.config = this.configBuilder(data);
+
+        if (this.chart) {
+          this.chart.destroy();
+        }
         this.chart = new Chart('myChart', this.config);
+
+        this.totalArrecadado = Array.isArray(data)
+          ? data.reduce((acc, item) => acc + (item.total || 0), 0)
+          : 0;
+        this.percentArrecadado = Math.round((this.totalArrecadado / this.metaDoMes) * 100);
       },
       error: (err) => {
         console.error('Erro ao buscar dados do dashboard', err);

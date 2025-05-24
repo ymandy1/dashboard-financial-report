@@ -106,6 +106,7 @@
 .user-info {
   display: flex;
   align-items: center;
+   margin-left: auto;
 }
 
 .user-name {
@@ -129,4 +130,66 @@
 
 .sidebar-bottom {
   margin-top: auto;
+}
+
+.close-sidebar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #fff;
+  border: none;
+  font-size: 2rem;
+  color: #295c47;
+  z-index: 1101;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    display: none !important;
+  }
+  .sidebar.sidebar-mobile {
+    display: block !important;
+    position: fixed;
+    top: 0; left: 0;
+    width: 70vw;
+    max-width: 320px;
+    height: 100vh;
+    background: #fff;
+    z-index: 1002;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+    animation: fadeIn 0.2s;
+  }
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    background: #fff;
+    border: none;
+    font-size: 2rem;
+    color: #295c47;
+    z-index: 1001;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 8px 12px;
+  }
+}
+@media (min-width: 701px) {
+  .menu-toggle {
+    display: none;
+  }
+  .sidebar {
+    display: block !important;
+    position: static;
+    width: 220px;
+    height: auto;
+    box-shadow: none;
+  }
+  .sidebar.sidebar-mobile {
+    display: none !important;
+  }
 }
