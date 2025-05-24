@@ -1,34 +1,37 @@
+
 <section class="dashboard-content">
-    <div class="dashboard-left">
-      <h3>Doações recebidas</h3>
-      <div class="dashboard-chart-header">
-        <span>Ordenar por <b>Esse mês</b></span>
+  <div class="dashboard-left">
+    <h3>Doações recebidas</h3>
+    <div class="dashboard-chart-header">
+      <span>Ordenar por <b>Esse ano</b></span>
+    </div>
+    <div class="dashboard-chart">
+      <div style="width:100%;overflow-x:auto;">
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+  </div>
+  <div class="dashboard-right">
+    <div class="card total-arrecadado">
+      <div class="card-header">
+        <span>Total arrecadado</span>
+        <i class="fa fa-ellipsis-v"></i>
       </div>
-      <div class="dashboard-chart">
-        <canvas id="myChart"> {{ chart }}</canvas>
+      <div class="card-value">
+        <span class="currency">$</span>
+        <span class="amount">{{ totalArrecadado | number:'1.0-0' }}</span>
+        <span class="cents">,{{ ((totalArrecadado % 1 | number:'1.2-2')?.split('.')?.[1]) || '00' }}</span>
+      </div>
+      <div class="card-desc">
+        <span>De todas as doações</span>
+        <p>O total de doações arrecadado foi {{ totalArrecadado | currency:'USD':'symbol':'1.2-2' }}</p>
       </div>
     </div>
-    <div class="dashboard-right">
-      <div class="card total-arrecadado">
-        <div class="card-header">
-          <span>Total arrecadado</span>
-          <i class="fa fa-ellipsis-v"></i>
-        </div>
-        <div class="card-value">
-          <span class="currency">$</span>
-          <span class="amount">350,00</span>
-          <span class="cents">.49</span>
-        </div>
-        <div class="card-desc">
-          <span>De todas as doações</span>
-          <p>O total de doações arrecadado foi 350.49 dólares</p>
-        </div>
-      </div>
-      <div class="card percent-arrecadado">
-        <span>Percentual de doações atingidos com base na meta do mês</span>
-        <div class="percent-circle">
-          <span>70%</span>
-        </div>
+    <div class="card percent-arrecadado">
+      <span>Percentual de doações atingidos com base na meta do ano</span>
+      <div class="percent-circle">
+        <span>{{ percentArrecadado }}%</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>

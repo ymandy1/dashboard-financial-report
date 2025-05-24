@@ -94,3 +94,78 @@
     max-width: 340px;
     width: 100%;
   }
+
+  @media (max-width: 1024px) {
+  .login-box {
+    padding: 32px 24px;
+    max-width: 98vw;
+  }
+  .login-left {
+    padding-right: 20px;
+  }
+  .logo {
+    width: 100px;
+    margin-bottom: 18px;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  .illustration {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-box {
+    flex-direction: column;
+    padding: 32px 16px;
+    max-width: 95vw;
+  }
+  .login-left {
+    padding-right: 0;
+    width: 100%;
+  }
+  .login-right {
+    margin-top: 32px;
+    width: 100%;
+  }
+  .illustration {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 0 4vw;
+    height: auto;
+    min-height: 100vh;
+  }
+  .login-box {
+    padding: 18px 4vw;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  }
+  .logo {
+    width: 90px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .login-btn {
+    font-size: 1rem;
+    padding: 10px 0;
+    border-radius: 18px;
+    margin-top: 10px;
+  }
+  .illustration {
+    max-width: 160px;
+  }
+}
