@@ -28,9 +28,11 @@ export class LoginComponent {
 
     this.loginService.login(body).subscribe({
       next: (res: any) => {
+        console.log("Autenticado!, token de autenticação:", res.token)
         this.router.navigate(['/dashboard'])
       },
       error: (err) => {
+        alert(`Erro no login: ${err}`)
         console.error('Erro no login:', err);
       }
     });
