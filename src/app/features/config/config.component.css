@@ -117,4 +117,97 @@
     background-color: #c0392b;
   }
 
+  .card h3 {
+    border-bottom: 2px solid #7da79f;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .tabela-parceiros {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  .tabela-parceiros th,
+  .tabela-parceiros td {
+    border: 1px solid #7da79f;
+    padding: 0.5rem;
+    text-align: left;
+    background-color: #f9f9f9;
+  }
+  
+  .tabela-parceiros th {
+    background-color: #d9e6d6;
+  }
+  
+  .button-row {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    color: #295f4e;
+    border: 2px solid #295f4e;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-outline:hover {
+    background-color: #e8eaea;
+  }
+  
+   
+  .parceiros-section .tabela-parceiros {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .parceiros-section .tabela-parceiros th, 
+  .parceiros-section .tabela-parceiros td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .parceiros-section .button-row {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .parceiros-section .btn-filled {
+    background-color: #295c47;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .parceiros-section .btn-outline {
+    background: transparent;
+    border: 2px solid #295c47;
+    color: #295c47;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .parceiros-section .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
   

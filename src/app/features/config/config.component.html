@@ -1,59 +1,91 @@
 <div class="config-container">
-    <h2>Configurações</h2>
-    <section class="card">
-      <h3>Perfil</h3>
-      <form>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" placeholder="Seu nome completo" [(ngModel)]="user.nome" name="nome" />
-          </div>
-          <div class="form-group">
-            <label for="contato">Contato</label>
-            <input type="tel" id="contato" placeholder="(99) 99999-9999" [(ngModel)]="user.contato" name="contato" />
-          </div>
+  <h2>Configurações</h2>
+  <section class="card">
+    <h3>Perfil</h3>
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" placeholder="Seu nome completo" [(ngModel)]="user.nome" name="nome" />
         </div>
-        <div class="form-row">
-          <div class="form-group full-width">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="seu@email.com" [(ngModel)]="user.email" name="email" />
-          </div>
+        <div class="form-group">
+          <label for="contato">Contato</label>
+          <input type="tel" id="contato" placeholder="(99) 99999-9999" [(ngModel)]="user.contato" name="contato" />
         </div>
-        <div class="button-row">
-          <button class="btn-outline" type="button" (click)="onEdit()">Editar</button>
-          <button class="btn-filled" type="submit">Salvar</button>
-        </div>
-      </form>
-    </section>
-    <section class="card">
-      <h3>Nova Senha</h3>
-      <form>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="senha-atual">Senha atual</label>
-            <input type="password" id="senha-atual" placeholder="Digite sua senha atual" [(ngModel)]="senhaAtual" name="senhaAtual" />
-          </div>
-          <div class="form-group">
-            <label for="repetir-senha">Repetir nova senha</label>
-            <input type="password" id="repetir-senha" placeholder="Repita a nova senha" [(ngModel)]="repetirSenha" name="repetirSenha" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group full-width">
-            <label for="nova-senha">Nova senha</label>
-            <input type="password" id="nova-senha" placeholder="Nova senha" [(ngModel)]="novaSenha" name="novaSenha" />
-          </div>
-        </div>
-        <div class="button-row end">
-          <button class="btn-filled" type="submit">Salvar</button>
-        </div>
-      </form>
-    </section>
-    <section class="card danger-zone">
-      <h3>Deletar Conta</h3>
-      <p class="danger-text">Esta ação é irreversível. Todos os seus dados serão permanentemente excluídos.</p>
-      <div class="button-row end">
-        <button class="btn-delete" type="button" (click)="confirmDelete()">Deletar Conta</button>
       </div>
-    </section>
-  </div>
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com" [(ngModel)]="user.email" name="email" />
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="btn-outline" type="button" (click)="onEdit()">Editar</button>
+        <button class="btn-filled" type="submit">Salvar</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Nova Senha</h3>
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="senha-atual">Senha atual</label>
+          <input type="password" id="senha-atual" placeholder="Digite sua senha atual" [(ngModel)]="senhaAtual" name="senhaAtual" />
+        </div>
+        <div class="form-group">
+          <label for="repetir-senha">Repetir nova senha</label>
+          <input type="password" id="repetir-senha" placeholder="Repita a nova senha" [(ngModel)]="repetirSenha" name="repetirSenha" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label for="nova-senha">Nova senha</label>
+          <input type="password" id="nova-senha" placeholder="Nova senha" [(ngModel)]="novaSenha" name="novaSenha" />
+        </div>
+      </div>
+      <div class="button-row end">
+        <button class="btn-filled" type="submit">Salvar</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card parceiros-section">
+    <h3>Parceiros</h3>
+    <table class="tabela-parceiros">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let parceiro of parceiros">
+          <td>{{ parceiro.nome }}</td>
+          <td>{{ parceiro.tipo }}</td>
+        </tr>
+        <tr *ngIf="parceiros.length === 0">
+          <td colspan="2" style="text-align:center; font-style: italic; color: #888;">
+            Nenhum parceiro cadastrado.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="button-row">
+      <button class="btn-filled" type="button" (click)="adicionarParceiro()">Adicionar Parceiros</button>
+      <button class="btn-outline" type="button" (click)="editarParceiro()">Editar</button>
+      <button class="btn-delete" type="button" (click)="excluirParceiro()">Excluir</button>
+    </div>
+  </section>
+  
+
+  <section class="card danger-zone">
+    <h3>Deletar Conta</h3>
+    <p class="danger-text">Esta ação é irreversível. Todos os seus dados serão permanentemente excluídos.</p>
+    <div class="button-row end">
+      <button class="btn-delete" type="button" (click)="confirmDelete()">Deletar Conta</button>
+    </div>
+  </section>
+</div>
