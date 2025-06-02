@@ -1,28 +1,46 @@
 <div class="login-container">
-    <div class="login-box">
-      <div class="login-left">
-        <img src="./app/assets/logo/logo-tech4all.png" alt="Tech4All Logo" class="logo" />
-        <h2>Administração Financeira</h2>
-        <p class="subtitle">Digite suas informações de login</p>
-        <form>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="Digite seu email" />
+  <div class="login-box">
+    <div class="login-left">
+      <img src="./app/assets/logo/logo-tech4all.png" alt="Tech4All Logo" class="logo" />
+      <h2>Administração Financeira</h2>
+      <p class="subtitle">Digite suas informações de login</p>
+      
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            id="email" 
+            name="email" 
+            type="email" 
+            placeholder="Digite seu email" 
+            [(ngModel)]="email" 
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <div class="password-wrapper">
+            <input 
+              id="senha" 
+              name="senha" 
+              type="password" 
+              placeholder="Digite sua senha" 
+              [(ngModel)]="senha" 
+              required
+            />
+            <span class="toggle-password">
+              <i class="fa fa-eye"></i>
+            </span>
           </div>
-          <div class="form-group">
-            <label for="senha">Senha</label>
-            <div class="password-wrapper">
-              <input id="senha" type="password" placeholder="Digite sua senha" />
-              <span class="toggle-password">
-                <i class="fa fa-eye"></i>
-              </span>
-            </div>
-          </div>
-          <button type="submit" class="login-btn">Acessar</button>
-        </form>
-      </div>
-      <div class="login-right">
-        <img src="./app/assets/logo/tech-kids-studying.jpg" alt="Ilustração Login" class="illustration" />
-      </div>
+        </div>
+
+        <button type="submit" class="login-btn">Acessar</button>
+      </form>
+    </div>
+
+    <div class="login-right">
+      <img src="./app/assets/logo/tech-kids-studying.jpg" alt="Ilustração Login" class="illustration" />
     </div>
   </div>
+</div>
