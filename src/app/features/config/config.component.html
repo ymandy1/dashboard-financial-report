@@ -56,17 +56,19 @@
     <table class="tabela-parceiros">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nome</th>
           <th>Tipo</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let parceiro of parceiros">
+          <td>{{ parceiro.id }}</td>
           <td>{{ parceiro.nome }}</td>
           <td>{{ parceiro.tipo }}</td>
         </tr>
         <tr *ngIf="parceiros.length === 0">
-          <td colspan="2" style="text-align:center; font-style: italic; color: #888;">
+          <td colspan="3" style="text-align:center; font-style: italic; color: #888;">
             Nenhum parceiro cadastrado.
           </td>
         </tr>

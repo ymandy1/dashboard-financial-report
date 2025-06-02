@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { ParceirosService } from './services/parceiros.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-config',
@@ -10,17 +12,27 @@ import Swal from 'sweetalert2';
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.css']
 })
-export class ConfigComponent {
+export class ConfigComponent implements OnInit {
+
+  constructor(private parceiroService: ParceirosService) { }
+
+  parceiros: any[] = [];
+
   user = { nome: '', contato: '', email: '' };
   senhaAtual = '';
   novaSenha = '';
   repetirSenha = '';
 
-  parceiros = [
-    { nome: 'Santander', tipo: 'Banco' },
-    { nome: 'AWS', tipo: 'Tecnologia' },
-    { nome: 'Marista', tipo: 'Escola' }
-  ];
+  ngOnInit(): void {
+    this.parceiroService.getParceiro().subscribe({
+      next: (res: any[]) => {
+        this.parceiros = res;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar parceiros', err);
+      }
+    });
+  }
 
   onEdit() {
     // Seu código para editar perfil, se houver
@@ -65,8 +77,30 @@ export class ConfigComponent {
       }
     }).then((result) => {
       if (result.isConfirmed && result.value) {
-        this.parceiros.push(result.value);
+        let parceiro = {
+          nome: result.value.nome,
+          tipo: result.value.tipo
+        }
+        this.parceiroService.addParceiro(parceiro).subscribe({
+          next: (res: any) => {
+            console.log(res)
+            console.log("parceiro adicionado")
+          },
+          error: (error: any) => {
+            console.error(error)
+            console.log("erro ao adicionar parceiro")
+          }
+        })
         Swal.fire('Adicionado!', 'Parceiro adicionado com sucesso.', 'success');
+        this.parceiroService.getParceiro().subscribe({
+          next: (res: any[]) => {
+            this.parceiros = res;
+          },
+          error: (err) => {
+            console.error('Erro ao atualizar lista de parceiros', err);
+          }
+        });
+
       }
     });
   }
@@ -80,10 +114,10 @@ export class ConfigComponent {
     Swal.fire({
       title: 'Escolha o parceiro para editar',
       input: 'select',
-      inputOptions: this.parceiros.reduce((acc, cur, i) => {
+      inputOptions: this.parceiros.reduce((acc: any, cur: any, i: any) => {
         acc[i] = `${cur.nome} (${cur.tipo})`;
         return acc;
-      }, {} as {[key: number]: string}),
+      }, {} as { [key: number]: string }),
       inputPlaceholder: 'Selecione um parceiro',
       showCancelButton: true,
       preConfirm: (index) => {
@@ -117,7 +151,19 @@ export class ConfigComponent {
         }).then((editResult) => {
           if (editResult.isConfirmed && editResult.value) {
             this.parceiros[parceiroIndex] = editResult.value;
+            this.parceiroService.updateParceiro(parceiro.id, this.parceiros[parceiroIndex]).subscribe({
+              next: (res) => console.log(res.mensagem),
+              error: (err) => console.error(err)
+            });
             Swal.fire('Atualizado!', 'Parceiro atualizado com sucesso.', 'success');
+            this.parceiroService.getParceiro().subscribe({
+              next: (res: any[]) => {
+                this.parceiros = res;
+              },
+              error: (err) => {
+                console.error('Erro ao atualizar lista de parceiros', err);
+              }
+            });
           }
         });
       }
@@ -132,10 +178,10 @@ export class ConfigComponent {
     Swal.fire({
       title: 'Escolha o parceiro para excluir',
       input: 'select',
-      inputOptions: this.parceiros.reduce((acc, cur, i) => {
+      inputOptions: this.parceiros.reduce((acc: any, cur: any, i: any) => {
         acc[i] = `${cur.nome} (${cur.tipo})`;
         return acc;
-      }, {} as {[key: number]: string}),
+      }, {} as { [key: number]: string }),
       inputPlaceholder: 'Selecione um parceiro',
       showCancelButton: true,
       confirmButtonColor: '#e74c3c',
@@ -163,8 +209,25 @@ export class ConfigComponent {
           cancelButtonText: 'Cancelar',
         }).then((confirmResult) => {
           if (confirmResult.isConfirmed) {
-            this.parceiros.splice(parceiroIndex, 1);
+            const parceiroId = this.parceiros[parceiroIndex].id;
+
+            this.parceiroService.deleteParceiro(parceiroId).subscribe({
+              next: () => {
+                console.log("sucesso")
+              },
+              error: (error) => {
+                console.log("Erro ao deletar parceiro", error)
+              }
+            })
             Swal.fire('Excluído!', 'Parceiro excluído com sucesso.', 'success');
+            this.parceiroService.getParceiro().subscribe({
+              next: (res: any[]) => {
+                this.parceiros = res;
+              },
+              error: (err) => {
+                console.error('Erro ao atualizar lista de parceiros', err);
+              }
+            });
           }
         });
       }
