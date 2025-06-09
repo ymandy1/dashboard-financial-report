@@ -1,41 +1,94 @@
+.team-container {
+  padding: 20px;
+}
+
+.formulario-time {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px auto;
+  max-width: 900px;
+  justify-content: center;
+}
+
+.formulario-time input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 160px;
+}
+
+.formulario-time button {
+  padding: 10px 16px;
+  background-color: #295c47;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.formulario-time button:hover {
+  background-color: #1e4636;
+}
+
 .team-table-wrapper {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-    max-width: 900px;
-    margin: 0 auto 30px auto;
-    padding: 0; 
-    overflow: hidden; 
-  }
-  
-  .team-table {
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-    background: transparent;
-  }
-  
-  .team-table th {
-    background: #295c47;
-    color: #fff;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  
-  .team-table td {
-    border: 1px solid #e0e0e0;
-    padding: 10px 0;
-    font-size: 1rem;
-    color: #295c47;
-    background: #f9f9f9;
-  }
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  overflow: hidden;
+}
+
+.team-table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  background: transparent;
+}
+
+.team-table th {
+  background: #295c47;
+  color: #fff;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.team-table td {
+  border: 1px solid #e0e0e0;
+  padding: 10px 0;
+  font-size: 1rem;
+  color: #295c47;
+  background: #f9f9f9;
+}
+
+.team-table button {
+  padding: 6px 12px;
+  margin: 0 4px;
+  background-color: #295c47;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.team-table button:hover {
+  background-color: #1e4636;
+}
 
 @media (max-width: 1024px) {
   .team-table-wrapper {
     max-width: 100vw;
     padding: 0 10px;
   }
+
   .team-table {
     font-size: 0.98rem;
   }
@@ -45,25 +98,61 @@
   .team-container {
     padding: 0 2vw;
   }
+
   .team-table-wrapper {
     max-width: 100vw;
     overflow-x: auto;
     padding: 0;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   }
+
   .team-table {
     min-width: 520px;
     font-size: 0.96rem;
   }
+
   .team-table th,
   .team-table td {
     padding: 8px 4px;
     font-size: 0.96rem;
     white-space: nowrap;
   }
+
   h2 {
     font-size: 1.1rem;
     margin-bottom: 12px;
   }
+}
+
+.team-table button.delete-btn {
+  background-color: #d9534f; 
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.team-table button.delete-btn:hover {
+  background-color: #b52b27; 
+}
+
+.formulario-time select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 160px;
+  background-color: white;
+  color: #295c47;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.formulario-time select:focus {
+  outline: none;
+  border-color: #295c47;
 }
