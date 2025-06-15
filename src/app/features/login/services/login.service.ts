@@ -12,7 +12,23 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
+  isLoggedIn(): boolean {
+    if (typeof window !== 'undefined') {
+      return !!localStorage.getItem('authToken');
+    }
+    return false
+  }
+
+  logout() {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('authToken');
+    }
+  }
+
   public login(body: any): Observable<any> {
+
+    // localStorage.setItem('authToken', token);
+
     return this.httpClient.post('http://localhost:8080/api/login', body, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
