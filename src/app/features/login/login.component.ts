@@ -28,7 +28,11 @@ export class LoginComponent {
 
     this.loginService.login(body).subscribe({
       next: (res: any) => {
-        console.log("Autenticado!, token de autenticação:", res.token)
+        const token = res.token;
+        if (token) {
+          localStorage.setItem('authToken', token);
+          this.router.navigate(['/dashboard']);
+        }
         this.router.navigate(['/dashboard'])
       },
       error: (err) => {
