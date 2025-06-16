@@ -7,18 +7,27 @@
     <option value="por-mes">Total arrecadado por mês</option>
   </select>
 
-  <label for="data-inicio">Data início</label>
-  <input type="date" id="data-inicio" name="dataInicio" [(ngModel)]="dataInicio" required />
+  <!-- Campos para relatórios que NÃO são "por-mes" -->
+  <ng-container *ngIf="tipoRelatorio !== 'por-mes'">
+    <label for="data-inicio">Data início</label>
+    <input type="date" id="data-inicio" name="dataInicio" [(ngModel)]="dataInicio" required />
 
-  <label for="data-fim">Data fim</label>
-  <input type="date" id="data-fim" name="dataFim" [(ngModel)]="dataFim" required />
+    <label for="data-fim">Data fim</label>
+    <input type="date" id="data-fim" name="dataFim" [(ngModel)]="dataFim" required />
 
-  <label for="tipo-parceiro">Parceiro:</label>
-  <select id="parceiro" name="parceiro" [(ngModel)]="parceiro" required>
-    <option value="" disabled>Selecione um parceiro</option>
-    <option value="todos">Todos</option>
-    <option *ngFor="let p of parceiros" [value]="p.nome">{{ p.nome }}</option>
-  </select>
+    <label for="tipo-parceiro">Parceiro:</label>
+    <select id="parceiro" name="parceiro" [(ngModel)]="parceiro" required>
+      <option value="" disabled>Selecione um parceiro</option>
+      <option value="todos">Todos</option>
+      <option *ngFor="let p of parceiros" [value]="p.nome">{{ p.nome }}</option>
+    </select>
+  </ng-container>
+
+  <!-- Campo "Ano Base" apenas para "por-mes" -->
+  <ng-container *ngIf="tipoRelatorio === 'por-mes'">
+    <label for="ano-base">Ano base:</label>
+    <input type="number" id="ano-base" name="anoBase" [(ngModel)]="anoBase" required min="2000" max="2100" />
+  </ng-container>
 
   <button type="submit" class="report-btn">Gerar Relatório</button>
 </form>
