@@ -169,3 +169,23 @@
     max-width: 160px;
   }
 }
+
+.login-alert-popup {
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  border: 1px solid #e74c3c;
+}
+
+.login-alert-title {
+  font-size: 1.5rem;
+  color: #c0392b;
+}
+
+.login-alert-button {
+  background-color: #295c47 !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px !important;
+}
