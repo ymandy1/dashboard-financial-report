@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-main-layout',
@@ -17,9 +17,14 @@ export class MainLayoutComponent implements OnInit {
     console.log(this.userName)
   }
 
-
+  constructor(private router: Router) { }
 
   mostrarSidebar = false;
+
+  logout() {
+    localStorage.clear()
+    this.router.navigate([''])
+  }
 
   fecharSidebar() {
     this.mostrarSidebar = false;
