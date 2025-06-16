@@ -24,64 +24,7 @@
         <button class="btn-filled" type="submit">Salvar</button>
       </div>
     </form>
-  </section>
-
-  <section class="card">
-    <h3>Nova Senha</h3>
-    <form>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="senha-atual">Senha atual</label>
-          <input type="password" id="senha-atual" placeholder="Digite sua senha atual" [(ngModel)]="senhaAtual" name="senhaAtual" />
-        </div>
-        <div class="form-group">
-          <label for="repetir-senha">Repetir nova senha</label>
-          <input type="password" id="repetir-senha" placeholder="Repita a nova senha" [(ngModel)]="repetirSenha" name="repetirSenha" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group full-width">
-          <label for="nova-senha">Nova senha</label>
-          <input type="password" id="nova-senha" placeholder="Nova senha" [(ngModel)]="novaSenha" name="novaSenha" />
-        </div>
-      </div>
-      <div class="button-row end">
-        <button class="btn-filled" type="submit">Salvar</button>
-      </div>
-    </form>
-  </section>
-
-  <section class="card parceiros-section">
-    <h3>Parceiros</h3>
-    <table class="tabela-parceiros">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Tipo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let parceiro of parceiros">
-          <td>{{ parceiro.id }}</td>
-          <td>{{ parceiro.nome }}</td>
-          <td>{{ parceiro.tipo }}</td>
-        </tr>
-        <tr *ngIf="parceiros.length === 0">
-          <td colspan="3" style="text-align:center; font-style: italic; color: #888;">
-            Nenhum parceiro cadastrado.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <div class="button-row">
-      <button class="btn-filled" type="button" (click)="adicionarParceiro()">Adicionar Parceiros</button>
-      <button class="btn-outline" type="button" (click)="editarParceiro()">Editar</button>
-      <button class="btn-delete" type="button" (click)="excluirParceiro()">Excluir</button>
-    </div>
-  </section>
-  
+  </section>  
 
   <section class="card danger-zone">
     <h3>Deletar Conta</h3>

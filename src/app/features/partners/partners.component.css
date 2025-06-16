@@ -135,3 +135,50 @@
     height: auto;
   }
 }
+
+
+.parceiros-section .tabela-parceiros {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .parceiros-section .tabela-parceiros th, 
+  .parceiros-section .tabela-parceiros td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .parceiros-section .button-row {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .parceiros-section .btn-filled {
+    background-color: #295c47;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .parceiros-section .btn-outline {
+    background: transparent;
+    border: 2px solid #295c47;
+    color: #295c47;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .parceiros-section .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }

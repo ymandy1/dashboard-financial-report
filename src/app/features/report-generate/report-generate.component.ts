@@ -1,21 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ParceirosService } from '../config/services/parceiros.service';
 
 @Component({
+  standalone: true,
   selector: 'app-report-generate',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './report-generate.component.html',
-  styleUrl: './report-generate.component.css'
+  styleUrls: ['./report-generate.component.css']
 })
-export class ReportGenerateComponent {
+export class ReportGenerateComponent implements OnInit {
+
+  parceiros: any[] = [];
 
   tipoRelatorio = '';
   dataInicio = '';
   dataFim = '';
   parceiro = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private parceiroService: ParceirosService) { }
+
+  ngOnInit(): void {
+    this.parceiroService.getParceiro().subscribe({
+      next: (res) => {
+        this.parceiros = res;
+        console.log(this.parceiros)
+      },
+      error: (err) => {
+        console.error('Erro ao buscar parceiros:', err);
+      }
+    });
+  }
 
   gerarRelatorio() {
     this.router.navigate(['/gerar-relatorio'], {

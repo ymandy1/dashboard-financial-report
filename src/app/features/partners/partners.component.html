@@ -1,4 +1,4 @@
-<div class="partners-container">
+<!-- <div class="partners-container">
     <div class="partners-header">
       <h2>Parceiros</h2>
     </div>
@@ -42,3 +42,36 @@
       </div>
     </div>
   </div>
+  
+  -->
+
+  <section class="card parceiros-section">
+    <h3>Parceiros</h3>
+    <table class="tabela-parceiros">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let parceiro of parceiros">
+          <td>{{ parceiro.id }}</td>
+          <td>{{ parceiro.nome }}</td>
+          <td>{{ parceiro.tipo }}</td>
+        </tr>
+        <tr *ngIf="parceiros.length === 0">
+          <td colspan="3" style="text-align:center; font-style: italic; color: #888;">
+            Nenhum parceiro cadastrado.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="button-row">
+      <button class="btn-filled" type="button" (click)="adicionarParceiro()">Adicionar Parceiros</button>
+      <button class="btn-outline" type="button" (click)="editarParceiro()">Editar</button>
+      <button class="btn-delete" type="button" (click)="excluirParceiro()">Excluir</button>
+    </div>
+  </section>
