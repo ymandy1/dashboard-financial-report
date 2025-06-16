@@ -2,14 +2,15 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { DoacoesService } from './services/doacoes.service';
 import { DoacaoDTO } from '../dashboard/model/doacao';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true, 
-  imports: [CommonModule], 
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -20,11 +21,27 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   totalArrecadado: number = 0;
   percentArrecadado: number = 0;
-  metaDoMes: number = 500; 
+  metaDoMes: number = 500;
+  nome?: string;
+  contato?: string;
+  email?: string;
+  role?: string;
 
-  constructor(private doacoesService: DoacoesService) { }
+  constructor(private doacoesService: DoacoesService, private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    // this.route.queryParams.subscribe(params => {
+    //   this.nome = params['nome'];
+    //   this.contato = params['contato'];
+    //   this.email = params['email'];
+    //   this.role = params['role'];
+
+    //   localStorage.setItem('nome', params['nome']);
+    //   localStorage.setItem('contato', params['contato']);
+    //   localStorage.setItem('email', params['email']);
+    //   localStorage.setItem('role', params['role']);
+
+    // })
   }
 
   ngAfterViewInit(): void {
