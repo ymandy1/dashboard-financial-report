@@ -13,7 +13,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  private apiUrl = 'http://localhost:8080/api/auth'; // ajuste para o seu back-end
+  private apiUrl = 'http://localhost:8081/api/auth'; // ajuste para o seu back-end
 
   getToken(): string | null {
     return typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
