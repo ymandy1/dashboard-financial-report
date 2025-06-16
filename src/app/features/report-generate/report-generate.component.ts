@@ -14,7 +14,7 @@ import { ParceirosService } from '../config/services/parceiros.service';
 export class ReportGenerateComponent implements OnInit {
 
   parceiros: any[] = [];
-
+  anoBase = '';
   tipoRelatorio = '';
   dataInicio = '';
   dataFim = '';
@@ -37,7 +37,7 @@ export class ReportGenerateComponent implements OnInit {
   gerarRelatorio() {
     this.router.navigate(['/gerar-relatorio'], {
       queryParams: {
-        anoMensal: "2024",
+        anoMensal: this.anoBase,
         tipo: this.tipoRelatorio,
         inicio: this.dataInicio,
         fim: this.dataFim,
