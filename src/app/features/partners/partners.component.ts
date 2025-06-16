@@ -4,23 +4,25 @@ import { ParceirosService } from '../config/services/parceiros.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { error } from 'console';
 
 @Component({
   standalone: true,
   selector: 'app-partners',
   imports: [FormsModule, CommonModule],
   templateUrl: './partners.component.html',
-  styleUrl: './partners.component.css'
+  styleUrls: ['./partners.component.css']
 })
 export class PartnersComponent implements OnInit {
 
   parceiros: any[] = [];
 
-  constructor(private router: Router, private parceiroService: ParceirosService) {
+  constructor(private router: Router, private parceiroService: ParceirosService) { }
 
-  }
   ngOnInit(): void {
+    this.atualizarListaParceiros();
+  }
+
+  atualizarListaParceiros() {
     this.parceiroService.getParceiro().subscribe({
       next: (res: any[]) => {
         this.parceiros = res;
@@ -30,6 +32,7 @@ export class PartnersComponent implements OnInit {
       }
     });
   }
+
   adicionarParceiro() {
     Swal.fire({
       title: 'Adicionar Parceiro',
@@ -48,30 +51,20 @@ export class PartnersComponent implements OnInit {
       }
     }).then((result) => {
       if (result.isConfirmed && result.value) {
-        let parceiro = {
+        const parceiro = {
           nome: result.value.nome,
           tipo: result.value.tipo
-        }
+        };
         this.parceiroService.addParceiro(parceiro).subscribe({
-          next: (res: any) => {
-            console.log(res)
-            console.log("parceiro adicionado")
+          next: () => {
+            Swal.fire('Adicionado!', 'Parceiro adicionado com sucesso.', 'success');
+            this.atualizarListaParceiros();
           },
           error: (error: any) => {
-            console.error(error)
-            console.log("erro ao adicionar parceiro")
-          }
-        })
-        Swal.fire('Adicionado!', 'Parceiro adicionado com sucesso.', 'success');
-        this.parceiroService.getParceiro().subscribe({
-          next: (res: any[]) => {
-            this.parceiros = res;
-          },
-          error: (err) => {
-            console.error('Erro ao atualizar lista de parceiros', err);
+            console.error(error);
+            Swal.fire('Erro', 'Erro ao adicionar parceiro.', 'error');
           }
         });
-
       }
     });
   }
@@ -81,14 +74,14 @@ export class PartnersComponent implements OnInit {
       Swal.fire('Nenhum parceiro', 'Não há parceiros para editar.', 'info');
       return;
     }
-    // Criar lista de nomes para escolher
+
     Swal.fire({
       title: 'Escolha o parceiro para editar',
       input: 'select',
-      inputOptions: this.parceiros.reduce((acc: any, cur: any, i: any) => {
+      inputOptions: this.parceiros.reduce((acc: any, cur: any, i: number) => {
         acc[i] = `${cur.nome} (${cur.tipo})`;
         return acc;
-      }, {} as { [key: number]: string }),
+      }, {}),
       inputPlaceholder: 'Selecione um parceiro',
       showCancelButton: true,
       preConfirm: (index) => {
@@ -101,6 +94,7 @@ export class PartnersComponent implements OnInit {
       if (result.isConfirmed && result.value !== null) {
         const parceiroIndex = Number(result.value);
         const parceiro = this.parceiros[parceiroIndex];
+
         Swal.fire({
           title: 'Editar Parceiro',
           html:
@@ -121,18 +115,15 @@ export class PartnersComponent implements OnInit {
           }
         }).then((editResult) => {
           if (editResult.isConfirmed && editResult.value) {
-            this.parceiros[parceiroIndex] = editResult.value;
-            this.parceiroService.updateParceiro(parceiro.id, this.parceiros[parceiroIndex]).subscribe({
-              next: (res) => console.log(res.mensagem),
-              error: (err) => console.error(err)
-            });
-            Swal.fire('Atualizado!', 'Parceiro atualizado com sucesso.', 'success');
-            this.parceiroService.getParceiro().subscribe({
-              next: (res: any[]) => {
-                this.parceiros = res;
+            const parceiroEditado = editResult.value;
+            this.parceiroService.updateParceiro(parceiro.id, parceiroEditado).subscribe({
+              next: () => {
+                Swal.fire('Atualizado!', 'Parceiro atualizado com sucesso.', 'success');
+                this.atualizarListaParceiros();
               },
               error: (err) => {
-                console.error('Erro ao atualizar lista de parceiros', err);
+                console.error(err);
+                Swal.fire('Erro', 'Erro ao atualizar parceiro.', 'error');
               }
             });
           }
@@ -146,13 +137,14 @@ export class PartnersComponent implements OnInit {
       Swal.fire('Nenhum parceiro', 'Não há parceiros para excluir.', 'info');
       return;
     }
+
     Swal.fire({
       title: 'Escolha o parceiro para excluir',
       input: 'select',
-      inputOptions: this.parceiros.reduce((acc: any, cur: any, i: any) => {
+      inputOptions: this.parceiros.reduce((acc: any, cur: any, i: number) => {
         acc[i] = `${cur.nome} (${cur.tipo})`;
         return acc;
-      }, {} as { [key: number]: string }),
+      }, {}),
       inputPlaceholder: 'Selecione um parceiro',
       showCancelButton: true,
       confirmButtonColor: '#e74c3c',
@@ -168,10 +160,11 @@ export class PartnersComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed && result.value !== null) {
         const parceiroIndex = Number(result.value);
-        const parceiroNome = this.parceiros[parceiroIndex].nome;
+        const parceiroId = this.parceiros[parceiroIndex].id;
+
         Swal.fire({
           title: 'Confirma exclusão?',
-          text: `Excluir parceiro ${parceiroNome}?`,
+          text: `Excluir parceiro ${this.parceiros[parceiroIndex].nome}?`,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#e74c3c',
@@ -180,23 +173,14 @@ export class PartnersComponent implements OnInit {
           cancelButtonText: 'Cancelar',
         }).then((confirmResult) => {
           if (confirmResult.isConfirmed) {
-            const parceiroId = this.parceiros[parceiroIndex].id;
-
             this.parceiroService.deleteParceiro(parceiroId).subscribe({
               next: () => {
-                console.log("sucesso")
+                Swal.fire('Excluído!', 'Parceiro excluído com sucesso.', 'success');
+                this.atualizarListaParceiros();
               },
               error: (error) => {
-                console.log("Erro ao deletar parceiro", error)
-              }
-            })
-            Swal.fire('Excluído!', 'Parceiro excluído com sucesso.', 'success');
-            this.parceiroService.getParceiro().subscribe({
-              next: (res: any[]) => {
-                this.parceiros = res;
-              },
-              error: (err) => {
-                console.error('Erro ao atualizar lista de parceiros', err);
+                console.error('Erro ao deletar parceiro', error);
+                Swal.fire('Erro', 'Erro ao excluir parceiro.', 'error');
               }
             });
           }
@@ -204,16 +188,4 @@ export class PartnersComponent implements OnInit {
       }
     });
   }
-
-
-  // gerarRelatorio() {
-  //   this.router.navigate(['/gerar-relatorio'], {
-  //     queryParams: {
-  //       tipo: this,
-  //       inicio: this,
-  //       fim: this,
-  //       parceiro: this
-  //     }
-  //   });
-  // }
 }
