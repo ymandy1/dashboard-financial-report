@@ -37,6 +37,7 @@ export class ReportGenerateComponent implements OnInit {
   gerarRelatorio() {
     this.router.navigate(['/gerar-relatorio'], {
       queryParams: {
+        anoMensal: "2024",
         tipo: this.tipoRelatorio,
         inicio: this.dataInicio,
         fim: this.dataFim,
