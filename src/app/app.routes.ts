@@ -7,6 +7,7 @@ import { TeamComponent } from './features/team/team.component';
 import { MainLayoutComponent } from './features/layout/main-layout/main-layout.component';
 import { GeradorRelatorioComponent } from './gerador-relatorio/gerador-relatorio.component';
 import { ConfigComponent } from './features/config/config.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,14 +15,14 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'parceiros', component: PartnersComponent },
-      { path: 'relatorio', component: ReportGenerateComponent },
-      { path: 'time', component: TeamComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'parceiros', component: PartnersComponent, canActivate: [AuthGuard] },
+      { path: 'relatorio', component: ReportGenerateComponent, canActivate: [AuthGuard] },
+      { path: 'time', component: TeamComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'gerar-relatorio', component: GeradorRelatorioComponent },
-      { path: 'configuracoes', component: ConfigComponent },
-      { path: 'sair', redirectTo: '', pathMatch: 'full' },
+      { path: 'gerar-relatorio', component: GeradorRelatorioComponent, canActivate: [AuthGuard] },
+      { path: 'configuracoes', component: ConfigComponent, canActivate: [AuthGuard] },
+      { path: 'sair', redirectTo: '', pathMatch: 'full', canActivate: [AuthGuard] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
