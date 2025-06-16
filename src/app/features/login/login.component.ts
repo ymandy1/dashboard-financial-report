@@ -29,10 +29,21 @@ export class LoginComponent {
 
     this.loginService.login(body).subscribe({
       next: (res: any) => {
+        localStorage.setItem('nome', res.userLoginResponseDTO.nome);
+        localStorage.setItem('contato', res.userLoginResponseDTO.contato);
+        localStorage.setItem('email', res.userLoginResponseDTO.email);
+        localStorage.setItem('role', res.userLoginResponseDTO.role);
         const token = res.token;
         if (token) {
           localStorage.setItem('authToken', token);
-          this.router.navigate(['/dashboard']);
+          // this.router.navigate(['/dashboard'], {
+          //   queryParams: {
+          //     nome: res.userLoginResponseDTO.nome,
+          //     email: res.userLoginResponseDTO.email,
+          //     contato: res.userLoginResponseDTO.contato,
+          //     role: res.userLoginResponseDTO.role,
+          //   }
+          // });
         }
         this.router.navigate(['/dashboard'])
       },
@@ -40,11 +51,11 @@ export class LoginComponent {
         // (F12)
         console.error('Código do erro:', err.status);
         console.error('Detalhes:', err);
-      
+
         // Erro 500 ou desconhecido
         const status = err.status || 'Erro desconhecido';
         const message = err.error?.message || 'Usuário não encontrado ou senha incorreta.';
-      
+
         Swal.fire({
           title: `Erro ${status}`,
           text: message,
@@ -59,8 +70,8 @@ export class LoginComponent {
             confirmButton: 'login-alert-button'
           }
         });
-        
-      }      
+
+      }
     });
   }
 }

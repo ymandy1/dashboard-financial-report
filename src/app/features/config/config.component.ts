@@ -24,6 +24,11 @@ export class ConfigComponent implements OnInit {
   repetirSenha = '';
 
   ngOnInit(): void {
+
+    this.user.nome = localStorage.getItem('nome') ?? '';
+    this.user.contato = localStorage.getItem('contato') ?? '';
+    this.user.email = localStorage.getItem('email') ?? '';
+
     this.parceiroService.getParceiro().subscribe({
       next: (res: any[]) => {
         this.parceiros = res;

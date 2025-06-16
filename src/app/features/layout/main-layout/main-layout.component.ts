@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -8,10 +8,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './main-layout.component.css'
 })
 
-export class MainLayoutComponent {
-   mostrarSidebar = false; 
+export class MainLayoutComponent implements OnInit {
+
+  userName?: string;
+
+  ngOnInit(): void {
+    this.userName = localStorage.getItem("nome")!!
+    console.log(this.userName)
+  }
+
+
+
+  mostrarSidebar = false;
 
   fecharSidebar() {
-   this.mostrarSidebar = false;
+    this.mostrarSidebar = false;
   }
 }
