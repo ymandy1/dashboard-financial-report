@@ -5,12 +5,10 @@
     <input type="text" placeholder="Nome" [(ngModel)]="novoFuncionario.nome" name="nome" required>
     <input type="email" placeholder="Email" [(ngModel)]="novoFuncionario.email" name="email" required>
     
-    <select [(ngModel)]="novoFuncionario.permissao" name="permissao" required>
-      <option value="" disabled>Selecione a permissão</option>
-      <option value="LEITURA, EXECUÇÃO, ESCRITA">Leitura, Execução, Escrita</option>
-      <option value="LEITURA, EXECUÇÃO">Leitura, Execução</option>
-      <option value="LEITURA">Leitura</option>
-    </select>
+    <select [(ngModel)]="novoFuncionario.role" name="permissao" required>
+  <option value="" disabled>Selecione a permissão</option>
+  <option *ngFor="let r of rolesDisponiveis" [value]="r.value">{{ r.label }}</option>
+</select>
     
     <button type="submit">{{ indiceEditando !== null ? 'Salvar' : 'Adicionar' }}</button>
   </form>
@@ -30,11 +28,12 @@
         <tr *ngFor="let funcionario of funcionarios; let i = index">
           <td>{{ funcionario.nome }}</td>
           <td>{{ funcionario.email }}</td>
-          <td>{{ funcionario.permissao }}</td>
-          <td>
-            <button (click)="editarFuncionario(i)">Editar</button>
-            <button class="delete-btn" (click)="removerFuncionario(i)">Excluir</button>
-          </td>
+          <td>{{ funcionario.role }}</td>
+<td>
+  <button *ngIf="userRole === 'MASTER' || userRole === 'ADMIN'" (click)="editarFuncionario(i)">Editar</button>
+  <button *ngIf="userRole === 'MASTER'" class="delete-btn" (click)="removerFuncionario(i)">Excluir</button>
+</td>
+
         </tr>
       </tbody>
     </table>
