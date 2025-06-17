@@ -91,20 +91,21 @@ export class GeradorRelatorioComponent implements OnInit {
         labels: data.labels,
         datasets: [
           {
-            label: 'Valor das doações',
+            label: 'Valor das doações em reais',
             data: data.values,
             backgroundColor: 'green'
           }
         ]
       },
       options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        },
         responsive: true,
-      },
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
     };
   }
 
@@ -144,6 +145,7 @@ export class GeradorRelatorioComponent implements OnInit {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: 'bottom'

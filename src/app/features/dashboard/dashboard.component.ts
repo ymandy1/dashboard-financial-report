@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         labels: labels,
         datasets: [
           {
-            label: 'Valor das doações',
+            label: 'Valor das doações em reais',
             data: values,
             backgroundColor: 'green'
 
